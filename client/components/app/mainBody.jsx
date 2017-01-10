@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {Button} from 'antd-mobile';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -19,8 +19,9 @@ export default class extends Component {
         return(
             <div>
                 <p>{this.props.counter}</p>
-                <button onClick={this.loseCounter}>-</button>
-                <button onClick={this.addCounter}>+</button>
+                <button onClick={this.loseCounter}>减少</button>
+                <button onClick={this.addCounter}>增加</button>
+                <Button />
             </div>
         )
     }

@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 
 import createReduxStore from './state/app/';
 import App from './components/app/';
-
+import '../assets/app.scss';
 let store = createReduxStore(window.__state);
 ReactDom.render((
     <Provider store={store}>

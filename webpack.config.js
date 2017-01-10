@@ -6,7 +6,7 @@ var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'client');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
-module.exports = {
+var webpackConfig = {
     entry: { app: path.resolve(APP_PATH, 'app.js') },
     output: { path: BUILD_PATH, filename: "bundle.js" },
     devtool: 'eval-source-map',
@@ -20,10 +20,17 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.json']
+        modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
+        extensions: ['', '.web.js', '.js', '.json', '.jsx'],
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
         new ExtractTextPlugin("style.css")
-    ]
+    ],
+    babel: {
+        presets: ["es2015", "react"],
+        plugins: [['import', { libraryName: 'antd-mobile', style: 'css' }]]
+    }
 };
+
+module.exports = webpackConfig;
