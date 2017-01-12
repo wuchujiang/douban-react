@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { APP_STATE } from '../../state/types';
+import { APP_GETMOVINGLIST } from 'client/state/types';
 
-export function counter(state = 1, action = {}) {
+export function getMovingList(state = {}, action = {}) {
     switch (action.type) {
-        case APP_STATE:
+        case APP_GETMOVINGLIST:
             return action.items;
         default:
             return state;
@@ -11,5 +11,5 @@ export function counter(state = 1, action = {}) {
 }
 
 export default combineReducers({
-    counter: counter
+    getMovingList: getMovingList
 })

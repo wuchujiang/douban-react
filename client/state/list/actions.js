@@ -2,7 +2,7 @@ import request from 'superagent';
 
 import {
     LIST_STATE
-} from '../../state/types';
+} from 'client/state/types';
 
 export function counter(num) {
     return (dispatch, getState) => {

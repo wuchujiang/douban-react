@@ -7,6 +7,10 @@ import * as appActions from '../../state/app/actions';
 import _ from 'lodash';
 import {Button, NavBar, TabBar , Icon} from 'antd-mobile';
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.props.actions.getMovingList();
+    }
     render() {
         return (
             <div>
