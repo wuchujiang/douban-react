@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 import { APP_GETMOVINGLIST } from 'client/state/types';
 
 export function getMovingList(state = {}, action = {}) {
+
     switch (action.type) {
         case APP_GETMOVINGLIST:
+            console.log(action.items);
             return action.items;
         default:
             return state;

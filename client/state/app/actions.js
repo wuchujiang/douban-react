@@ -3,14 +3,11 @@ import request from 'superagent';
 import {
     APP_GETMOVINGLIST
 } from 'client/state/types';
-export function getMovingList() {
+export function getMovingList(res = {}) {
     return (dispatch, getState) => {
-        return request.get("https://api.douban.com/v2/movie/in_theaters")
-            .then(res => {
-               dispatch({
-                    type: APP_GETMOVINGLIST,
-                    items: JSON.parse(res.text)
-                });
-           })
+        return dispatch({
+            type: APP_GETMOVINGLIST,
+            items: res
+        });
     }
 }

@@ -5,9 +5,6 @@ import ReactDom from 'react-dom';
 
 import createReduxStore from 'client/state/app/';
 import App from 'client/components/app/';
-import 'assets/app.scss';
-
-import ListPage from './list';
 let store = createReduxStore(window.__state);
 
 export default class AppPage extends Component {

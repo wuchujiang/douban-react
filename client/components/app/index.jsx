@@ -9,17 +9,20 @@ import {Button, NavBar, TabBar , Icon} from 'antd-mobile';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.props.actions.getMovingList();
+        
     }
+
+    componentWillMount() {
+
+    }
+
     render() {
         return (
             <div>
                 <NavBar
-                        leftContent="返回"
-                        mode="light"
-                        onLeftClick={() => console.log('onLeftClick')}
-                        rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />
-                    ]}>NavBar</NavBar>    
+                    mode="light"
+                    onLeftClick={() => console.log('onLeftClick')}
+                    rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />]}>正在热映</NavBar>    
                <MainBody {...this.props} />
             </div>
         )
@@ -29,7 +32,7 @@ class App extends Component {
 export default connect(
     (state) => {
         return {
-            counter: state.app.counter
+            getMovingList: state.app.getMovingList
         };
     },
     (dispatch) => {
