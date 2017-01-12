@@ -7,7 +7,7 @@ var APP_PATH = path.resolve(ROOT_PATH, 'client');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
 var webpackConfig = {
-    entry: { app: path.resolve(APP_PATH, 'app.js') },
+    entry: { app: path.resolve(APP_PATH, 'path.js') },
     output: { path: BUILD_PATH, filename: "bundle.js" },
     devtool: 'eval-source-map',
     module: {
@@ -22,6 +22,7 @@ var webpackConfig = {
     resolve: {
         modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
         extensions: ['', '.web.js', '.js', '.json', '.jsx'],
+        root: [ path.resolve('client'), path.resolve('assets'),__dirname ]
     },
     plugins: [
         new webpack.NoErrorsPlugin(),

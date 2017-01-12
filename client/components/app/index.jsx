@@ -5,11 +5,17 @@ import { bindActionCreators } from 'redux';
 import MainBody from './mainBody';
 import * as appActions from '../../state/app/actions';
 import _ from 'lodash';
-
+import {Button, NavBar, TabBar , Icon} from 'antd-mobile';
 class App extends Component {
     render() {
         return (
             <div>
+                <NavBar
+                        leftContent="返回"
+                        mode="light"
+                        onLeftClick={() => console.log('onLeftClick')}
+                        rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />
+                    ]}>NavBar</NavBar>    
                <MainBody {...this.props} />
             </div>
         )

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'antd-mobile';
+
+import {Link} from 'react-router';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -15,13 +17,14 @@ export default class extends Component {
         this.props.actions.counter(this.props.counter);
     }
 
+    componentWillUnmount() {
+        console.log("我销毁啦！！！")  
+    }
+
     render() {
         return(
             <div>
-                <p>{this.props.counter}</p>
-                <button onClick={this.loseCounter}>减少</button>
-                <button onClick={this.addCounter}>增加</button>
-                <Button />
+                <Link to="/list">点击跳转到list页面</Link>
             </div>
         )
     }
