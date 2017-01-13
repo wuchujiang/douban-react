@@ -55,8 +55,8 @@ export default class MainBody extends Component {
                         </div>
                         <div className="movie-content-footer">
                             <Flex>
-                                <Button>想看</Button>
-                                <Button>评分</Button>
+                                <Button><Icon type="heart"/>想看</Button>
+                                <Button><Icon type="star"/>评分</Button>
                             </Flex>
                         </div>
                     </div>

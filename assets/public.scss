@@ -95,6 +95,7 @@ a{
 	overflow: hidden;
 	padding: .3rem .3rem 0 .3rem;
 	line-height: 0.5rem;
+	font-size: .3rem;
 }
 .movie-summary.show{
 	max-height: 10rem;
@@ -113,4 +114,26 @@ a{
 	background: #fff;
 	border-bottom: 1px solid #ddd;
 }
+
+.movie-content-footer{
+	margin-top: .2rem;
+}
+
+.movie-content-footer button{
+	height: .7rem;
+	line-height: .7rem;
+	background: rgba(255,255,255,0.1);
+	color: #fff;
+	width: 48%;
+	border-radius: 0.04rem;
+}
+.movie-content-footer button:first-child{
+	margin-right: 4%;
+}
+
+.movie-content-footer .am-button-active{
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
+
 

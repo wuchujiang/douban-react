@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import {Button, NavBar, TabBar , Icon, Toast} from 'antd-mobile';
 import { Link } from 'react-router';
 import MainBody from './mainBody';
-import * as listActions from '../../state/list/actions';
+import * as listActions from 'client/state/list/actions';
 import _ from 'lodash';
 import request from 'superagent';
 
