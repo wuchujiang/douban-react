@@ -33,7 +33,7 @@ class List extends Component {
                     mode="dark"
                     iconName="false"
                     leftContent={<Link to="/">< Icon key = "0" type = "left" /></Link>}
-                    rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>电影详情</NavBar>
+                    rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>{this.props.title}</NavBar>
                <MainBody {...this.props} />
             </div>
         )

@@ -12,7 +12,7 @@ export default class ListPage extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-		        <List listId={this.props.params.name} />
+		        <List listId={this.props.params.name} title={this.props.location.query.title} />
 		    </Provider>
 		)
 	}
