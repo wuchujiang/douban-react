@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
 import {
     LIST_STATE,
-    LIST_GETMOVING_INFO
+    LIST_GETMOVING_INFO,
+    LIST_SETSHOWMOREBUTTON_STATE
 } from '../../state/types';
 
 export function counter(state = 1, action = {}) {
@@ -22,7 +23,18 @@ export function getMovingInfo(state = {}, action = {}) {
     }
 }
 
+export function setShowMoreButtonState(state = false, action = {}) {
+    switch (action.type) {
+        case LIST_SETSHOWMOREBUTTON_STATE:
+            return action.items;
+        default:
+            return state;    
+    }
+}
+
 export default combineReducers({
     counter: counter,
-    getMovingInfo: getMovingInfo
+    getMovingInfo: getMovingInfo,
+    setShowMoreButtonState: setShowMoreButtonState
 })
+

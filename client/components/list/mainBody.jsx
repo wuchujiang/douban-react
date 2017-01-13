@@ -10,6 +10,10 @@ export default class MainBody extends Component {
         
     }
 
+    switchShow() {
+        this.props.actions.setShowMoreButtonState(!this.props.setShowMoreButtonState);
+    }
+
     getRating(rate) {
         let star = [];
         for (let i = 0; i < 5; i++){
@@ -19,7 +23,7 @@ export default class MainBody extends Component {
     }
     
     getMovieContent() {
-        let { getMovingInfo } = this.props;
+        let { getMovingInfo, setShowMoreButtonState } = this.props;
         return (
             <div>
                 <div className="movie-box">
@@ -57,12 +61,14 @@ export default class MainBody extends Component {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div className="mobile-summary">
+                <div className="summary-box">
+                    <div className={setShowMoreButtonState ? "movie-summary show" : "movie-summary hide"}>
                         {getMovingInfo.summary}
                     </div>
-                    <div className="showMore">
-                        <Icon type="down" />
+                    <div className="showMore" onClick={e => {
+                        this.switchShow();
+                    }}>
+                        <Icon type={setShowMoreButtonState ? "up" : "down"} />
                     </div>
                 </div>
             </div>

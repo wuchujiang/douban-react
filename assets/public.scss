@@ -89,3 +89,28 @@ a{
 		display: block;
 	}
 }
+.movie-summary{
+	transition: max-height 0.2s;
+	-webkit-transition: max-height 0.2s;
+	overflow: hidden;
+	padding: .3rem .3rem 0 .3rem;
+	line-height: 0.5rem;
+}
+.movie-summary.show{
+	max-height: 10rem;
+}
+
+.movie-summary.hide{
+	max-height:1.5rem;
+}
+
+.showMore{
+	text-align: center;
+	padding: 0.15rem 0;
+}
+
+.summary-box{
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+}
+

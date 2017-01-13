@@ -44,7 +44,8 @@ export default connect(
     (state) => {
         return {
             counter: state.list.counter,
-            getMovingInfo: state.list.getMovingInfo
+            getMovingInfo: state.list.getMovingInfo,
+            setShowMoreButtonState: state.list.setShowMoreButtonState
         };
     },
     (dispatch) => {
