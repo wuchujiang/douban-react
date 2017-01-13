@@ -20,8 +20,8 @@ class App extends Component {
         return (
             <div>
                 <NavBar
-                    mode="light"
-                    onLeftClick={() => console.log('onLeftClick')}
+                    mode="dark"
+                    iconName="false"
                     rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />]}>正在热映</NavBar>    
                <MainBody {...this.props} />
             </div>

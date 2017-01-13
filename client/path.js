@@ -9,6 +9,6 @@ import ListPage from 'client/list';
 render((
 	<Router history={hashHistory}>
 		<Route path="/" component={AppPage}></Route>
-		<Route path="/list" component={ListPage}></Route>
+		<Route path="/list(/:name)" component={ListPage}></Route>
 	</Router>
 ), document.getElementById("root"))

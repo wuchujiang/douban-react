@@ -3,3 +3,6 @@ export const LIST_STATE = 'LIST_STATE';
 
 //获取正在热映的电影
 export const APP_GETMOVINGLIST = 'APP_GETMOVINGLIST';
+
+//获取
+export const LIST_GETMOVING_INFO = 'LIST_GETMOVING_INFO';

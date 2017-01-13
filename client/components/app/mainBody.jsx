@@ -35,9 +35,8 @@ export default class extends Component {
         if (!_.isEmpty(getMovingList)) {
             return (
                 getMovingList.subjects.map((v, k) => {
-                    console.log(v, k)
                     return (
-                        <Link to="/list">
+                        <Link to={{pathname:"list/"+v.id,query:{id:v.id}}}>
                             <ListItem
                                 key={_.uniqueId()}
                                 title={v.title}

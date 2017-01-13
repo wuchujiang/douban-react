@@ -5,13 +5,14 @@ import ReactDom from 'react-dom';
 
 import createReduxStore from 'client/state/list/';
 import List from 'client/components/list/';
+import 'assets/public.scss';
 let store = createReduxStore(window.__state);
 
 export default class ListPage extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-		        <List />
+		        <List listId={this.props.params.name} />
 		    </Provider>
 		)
 	}

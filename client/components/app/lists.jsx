@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Card, WhiteSpace } from 'antd-mobile';
-
 export default class ListItem extends Component {
     render() {
         return (

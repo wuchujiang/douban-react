@@ -5,10 +5,15 @@ export default class extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        
+    }
+
     render() {
         return (
             <div>
                 
+                <div>{this.props.getMovingInfo.summary}</div>
             </div>
         )
     }
