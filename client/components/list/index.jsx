@@ -5,6 +5,8 @@ import {Button, NavBar, TabBar , Icon, Toast} from 'antd-mobile';
 import { Link } from 'react-router';
 import MainBody from './mainBody';
 import * as listActions from 'client/state/list/actions';
+
+import request from 'superagent';
 import _ from 'lodash';
 
 class List extends Component {
@@ -13,7 +15,7 @@ class List extends Component {
         let listId = this.props.listId;
         if (_.isEmpty(getMovingInfo)) {
             Toast.loading('加载中...', 0, () => { });
-            request.get('https://api.douban.com/v2/movie/subject/'+listId)
+            request.get('http://m.maoyan.com/movie/' + listId + '.json')
                 .end((err, res) => {
                     this.props.actions.getMovingInfo(JSON.parse(res.text));
                     Toast.hide();

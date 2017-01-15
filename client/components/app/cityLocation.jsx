@@ -19,7 +19,7 @@ export default class CityLocation extends Component {
 
     showError(error) {
         if(error.code){
-            alert("获取位置错误");
+            console.log("获取位置错误");
         }
     }
 

@@ -24,32 +24,32 @@ export default class MainBody extends Component {
     
     getMovieContent() {
         let { getMovingInfo, setShowMoreButtonState } = this.props;
+        let movieDetail = getMovingInfo.data.MovieDetailModel;
         return (
             <div>
                 <div className="movie-box">
-                    <div className="movie-background"  style={{"backgroundImage": "url("+getMovingInfo.images.large+")"}} ></div>
+                    <div className="movie-background"  style={{"backgroundImage": "url(" + movieDetail.img + ")"}} ></div>
                     <div className="movie-filter"></div>    
                     <div className="movie-content">
                         <div className="movie-content-body">
                             <div className="movie-pic">
-                                <img src={getMovingInfo.images.large} alt=""/>
+                                <img src={movieDetail.img} alt=""/>
                             </div>
                             <div className="movie-info">
-                                <h3>{getMovingInfo.title}</h3>
-                                <p className="small-title">{getMovingInfo.original_title}</p>
+                                <h3>{movieDetail.nm}</h3>
                                 <div className="movie-rating">
                                     <p className="rating-items">
                                         <span>
-                                            {this.getRating(getMovingInfo.rating.average)}
+                                            {this.getRating(movieDetail.sc)}
                                         </span>
-                                        <span className="rating-average">{getMovingInfo.rating.average.toString().length != 1 ? getMovingInfo.rating.average : getMovingInfo.rating.average + ".0"}</span>
+                                        <span className="rating-average">{movieDetail.sc.toString().length != 1 ? movieDetail.sc : movieDetail.sc + ".0"}</span>
                                     </p>
-                                    <label>({getMovingInfo.ratings_count + "人评"})</label>      
+                                    <label>({movieDetail.snum + "人评"})</label>      
                                 </div>
                                 <ul>
-                                    <li>{getMovingInfo.genres.join(",")}</li>
-                                    <li>{getMovingInfo.countries}</li>
-                                    <li>{getMovingInfo.year}</li>                                
+                                    <li>{movieDetail.cat}</li>
+                                    <li>{movieDetail.src}/ {movieDetail.dur}分钟</li>
+                                    <li>{movieDetail.rt}</li>                                
                                 </ul>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ export default class MainBody extends Component {
                 </div>
                 <div className="summary-box">
                     <div className={setShowMoreButtonState ? "movie-summary show" : "movie-summary hide"}>
-                        {getMovingInfo.summary}
+                        {movieDetail.dra}
                     </div>
                     <div className="showMore" onClick={e => {
                         this.switchShow();
@@ -77,6 +77,7 @@ export default class MainBody extends Component {
 
     render() {
         let { getMovingInfo } = this.props;
+        console.log(getMovingInfo)
         return (
             <div>
                 {!_.isEmpty(getMovingInfo) ? this.getMovieContent() : ""}
