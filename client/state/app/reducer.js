@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import { APP_GETMOVINGLIST } from 'client/state/types';
+import {
+    APP_GETMOVINGLIST,
+    APP_GETCURRENTPOSITION
+} from 'client/state/types';
 
 export function getMovingList(state = {}, action = {}) {
 
@@ -11,6 +14,16 @@ export function getMovingList(state = {}, action = {}) {
     }
 }
 
+export function getCurrentPosition(state = {}, action = {}) {
+    switch (action.type) {
+        case APP_GETCURRENTPOSITION:
+            return actions.items;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
-    getMovingList: getMovingList
+    getMovingList: getMovingList,
+    getCurrentPosition: getCurrentPosition
 })

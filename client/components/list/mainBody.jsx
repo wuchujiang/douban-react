@@ -36,7 +36,7 @@ export default class MainBody extends Component {
                             </div>
                             <div className="movie-info">
                                 <h3>{getMovingInfo.title}</h3>
-                                <p className="small-title">{getMovingInfo.aka[0]}</p>
+                                <p className="small-title">{getMovingInfo.original_title}</p>
                                 <div className="movie-rating">
                                     <p className="rating-items">
                                         <span>

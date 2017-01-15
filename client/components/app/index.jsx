@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MainBody from './mainBody';
-import * as appActions from '../../state/app/actions';
+import * as appActions from 'client/state/app/actions';
 import _ from 'lodash';
-import {Button, NavBar, TabBar , Icon} from 'antd-mobile';
+import {Button, NavBar, TabBar , Icon, Toast} from 'antd-mobile';
+import request from 'superagent';
 class App extends Component {
     constructor(props) {
-        super(props);
-        
-    }
-
-    componentWillMount() {
-
+        super(props);  
     }
 
     render() {
@@ -22,7 +18,7 @@ class App extends Component {
                 <NavBar
                     mode="dark"
                     iconName="false"
-                    rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />]}>正在热映</NavBar>    
+                    rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />]}>猫眼电影</NavBar>    
                <MainBody {...this.props} />
             </div>
         )
@@ -32,7 +28,8 @@ class App extends Component {
 export default connect(
     (state) => {
         return {
-            getMovingList: state.app.getMovingList
+            getMovingList: state.app.getMovingList,
+            getCurrentPosition: state.app.getCurrentPosition
         };
     },
     (dispatch) => {

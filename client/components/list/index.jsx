@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 import MainBody from './mainBody';
 import * as listActions from 'client/state/list/actions';
 import _ from 'lodash';
-import request from 'superagent';
 
 class List extends Component {
     componentDidMount() {
@@ -24,6 +23,7 @@ class List extends Component {
 
     componentWillUnmount() {
         this.props.actions.getMovingInfo({});
+        this.props.actions.setShowMoreButtonState(false);
     }
 
     render() {
