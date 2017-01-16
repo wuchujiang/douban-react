@@ -14,14 +14,33 @@ export default class MainBody extends Component {
         this.props.actions.setShowMoreButtonState(!this.props.setShowMoreButtonState);
     }
 
-    getRating(rate) {
-        let star = [];
-        for (let i = 0; i < 5; i++){
-             star.push(<Icon key={_.uniqueId()} type="star" className={Math.round(rate / 2) > i ? "star" : "star-o"} />)   
+    getRating(movieDetail) {
+        if (movieDetail.sc != 0) {
+            let star = [];
+            for (let i = 0; i < 5; i++){
+                star.push(<Icon key={_.uniqueId()} type="star" className={Math.round(movieDetail.sc / 2) > i ? "star" : "star-o"} />)   
+            }
+            return (
+                <div className="movie-rating">
+                    <p className="rating-items">
+                        <span>
+                            {star}
+                        </span>
+                        <span className="rating-average">{movieDetail.sc.toString().length != 1 ? movieDetail.sc : movieDetail.sc + ".0"}</span>
+                    </p>
+                    <label>({movieDetail.snum + "人评"})</label>    
+                </div>
+             
+            )
+        } else {
+            return (
+                <div className="wishNumber">
+                    {movieDetail.wish}人想看
+                </div>
+            )
         }
-        return star;
     }
-    
+       
     getMovieContent() {
         let { getMovingInfo, setShowMoreButtonState } = this.props;
         let movieDetail = getMovingInfo.data.MovieDetailModel;
@@ -33,19 +52,16 @@ export default class MainBody extends Component {
                     <div className="movie-content">
                         <div className="movie-content-body">
                             <div className="movie-pic">
-                                <img src={movieDetail.img} alt=""/>
+                                <img src={movieDetail.img} alt="" />
+                                <div className="movie-player">
+                                    <div className="movie-player-button">
+                                <Icon type="caret-right" />
+                            </div>    
+                        </div>
                             </div>
                             <div className="movie-info">
                                 <h3>{movieDetail.nm}</h3>
-                                <div className="movie-rating">
-                                    <p className="rating-items">
-                                        <span>
-                                            {this.getRating(movieDetail.sc)}
-                                        </span>
-                                        <span className="rating-average">{movieDetail.sc.toString().length != 1 ? movieDetail.sc : movieDetail.sc + ".0"}</span>
-                                    </p>
-                                    <label>({movieDetail.snum + "人评"})</label>      
-                                </div>
+                                {this.getRating(movieDetail)}
                                 <ul>
                                     <li>{movieDetail.cat}</li>
                                     <li>{movieDetail.src}/ {movieDetail.dur}分钟</li>
@@ -62,9 +78,7 @@ export default class MainBody extends Component {
                     </div>
                 </div>
                 <div className="summary-box">
-                    <div className={setShowMoreButtonState ? "movie-summary show" : "movie-summary hide"}>
-                        {movieDetail.dra}
-                    </div>
+                    <div className={setShowMoreButtonState ? "movie-summary show" : "movie-summary hide"} dangerouslySetInnerHTML={{ __html: movieDetail.dra }} />
                     <div className="showMore" onClick={e => {
                         this.switchShow();
                     }}>

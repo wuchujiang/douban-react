@@ -41,15 +41,21 @@ a {
     .movie-info {
         color: #fff;
         h3 {
-            font-size: 36px;
+            font-size: 34px;
             padding-top: 10px;
         }
         .small-title {
             font-size: 20px;
         }
     }
+    .wishNumber{
+        padding: 18px 0;
+        color: yellow;
+        font-size: 32px;
+        font-weight: 700;
+    }
     .movie-rating {
-        padding: 10px 0;
+        padding: 14px 0;
         label {
             font-size: 20px;
             opacity: .7;
@@ -58,7 +64,7 @@ a {
         .rating-average {
             font-size: 30px;
             padding-left: 8px;
-            color: #ff9900;
+            color: yellow;
         }
     }
     .rating-items {
@@ -68,7 +74,7 @@ a {
             margin-right: 4px;
         }
         i.star {
-            color: #ff9900;
+            color: yellow;
         }
     }
 }
@@ -84,8 +90,9 @@ a {
 }
 
 .movie-pic {
-    border: 2px solid #fff;
+    border: 2px solid #ddd;
     margin-right: 20px;
+    position: relative;
     img {
         width: 200px;
         display: block;
@@ -138,4 +145,24 @@ a {
 
 .movie-content-footer .am-button-active {
     background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.movie-player{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border:3px solid #fff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+    line-height: 70px;
+    background-color: rgba(0,0,0,0.5);
+    i{
+        padding-left: 5px;
+    }
 }

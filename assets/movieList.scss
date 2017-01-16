@@ -20,7 +20,7 @@
     .movie-title {
         h2 {
             color: #333;
-            font-size: 36px;
+            font-size: 32px;
             line-height: 50px;
             padding-bottom: 14px;
             span {
@@ -54,9 +54,11 @@
     align-items: center;
     .movie-body-left {
         flex: 3;
+        -webkit-box-flex: 3;
     }
     .movie-body-right {
         flex: 1;
+        -webkit-box-flex: 1;
         text-align: right;
         span {
             background: #ef4238;
