@@ -14,10 +14,10 @@ export function getMovingList(state = {}, action = {}) {
     }
 }
 
-export function getCurrentPosition(state = {}, action = {}) {
+export function getCurrentPosition(state = "", action = {}) {
     switch (action.type) {
         case APP_GETCURRENTPOSITION:
-            return actions.items;
+            return action.items;
         default:
             return state;
     }

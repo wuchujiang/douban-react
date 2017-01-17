@@ -12,6 +12,7 @@ export default class ActorList extends Component {
             .timeout(15000)    
             .then(
             res => {
+                Toast.hide();
                 this.props.actions.setActorItem(JSON.parse(res.text));
             },
             err => {

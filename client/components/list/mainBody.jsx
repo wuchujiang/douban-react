@@ -3,6 +3,8 @@ import { Button, NavBar, TabBar, Icon, Flex } from 'antd-mobile';
 import _ from 'lodash';
 import ActorList from './actorList';
 import ActorInfo from './actorInfo';
+
+import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay } from 'react-html5video';
 export default class MainBody extends Component {
     constructor(props) {
         super(props);
@@ -54,7 +56,9 @@ export default class MainBody extends Component {
                     <div className="movie-content">
                         <div className="movie-content-body">
                             <div className="movie-pic">
-                                <img src={movieDetail.img.replace("/w.h","")} alt="" />
+                                <div className="img-wrap">
+                                    <img src={movieDetail.img.replace("/w.h", "")} alt="" />
+                                </div>
                                 <div className="movie-player">
                                     <div className="movie-player-button">
                                 <Icon type="caret-right" />
@@ -99,6 +103,13 @@ export default class MainBody extends Component {
                 {!_.isEmpty(getMovingInfo) ? this.getMovieContent() : ""}
                 <ActorList {...this.props} />
                 {!_.isEmpty(checkActorInfo) ? <ActorInfo {...this.props} /> : ""}
+                <Video controls autoPlay loop muted
+                poster="http://p1.meituan.net/movie/f5cab6f0ff5c71f43fbef9a33a28835828406.jpg"
+                onCanPlayThrough={() => {
+                    // Do stuff
+                }}>
+                    <source src="http://maoyan.meituan.net/movie/videos/854x480b5967b4fbb2242f8a62e24f367e29a9c.mp4" type="video/mp4" />
+                </Video>
             </div>
         )
     }

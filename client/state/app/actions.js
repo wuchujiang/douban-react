@@ -14,9 +14,9 @@ export function getMovingList(res = {}) {
     }
 }
 
-export function getCurrentPosition(param = { city: "", lng: "", lat: "", latitude: "", longitude: "" }) {
+export function getCurrentPosition(param = {}) {
     return (dispatch, getState) => {
-        let oldParam = getState.app.getCurrentPosition;
+        let oldParam = getState().app.getCurrentPosition;
         let newParam = _.assign(oldParam, param)
         return dispatch({
             type: APP_GETCURRENTPOSITION,

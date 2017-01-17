@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import request from 'superagent';
 
 export default class CityLocation extends Component {
     constructor(props) {
@@ -6,6 +7,8 @@ export default class CityLocation extends Component {
     }
 
     componentDidMount() {
+        let _this = this;
+        //通过ip查询地理位置
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
         }

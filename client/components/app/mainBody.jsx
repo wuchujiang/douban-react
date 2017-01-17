@@ -24,7 +24,7 @@ export default class MainBody extends Component {
         
         return (
             <div>
-                <CityLocation />
+                <CityLocation {...this.props} />
                 <MovieList {...this.props} />
             </div>
         )

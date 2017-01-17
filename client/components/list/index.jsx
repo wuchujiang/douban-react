@@ -16,16 +16,23 @@ class List extends Component {
         if (_.isEmpty(getMovingInfo)) {
             Toast.loading('加载中...', 0, () => { });
             request.get('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30')
-                .end((err, res) => {
-                    this.props.actions.getMovingInfo(JSON.parse(res.text));
+                .then(
+                res => {
                     Toast.hide();
-                })
+                    this.props.actions.getMovingInfo(JSON.parse(res.text));
+                },
+                err => {
+                    Toast.offline('网络连接失败!!!');
+                }    
+            )
         }
     }
 
     componentWillUnmount() {
-        this.props.actions.getMovingInfo({});
+        this.props.actions.getMovingInfo();
         this.props.actions.setShowMoreButtonState(false);
+        this.props.actions.checkActorInfo();
+        this.props.actions.setActorItem();
     }
 
     render() {

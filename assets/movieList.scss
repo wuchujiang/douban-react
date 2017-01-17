@@ -99,7 +99,9 @@
             font-size: 24px;
             .actor-img{
                 width: 150px;
-                padding-bottom: 10px;
+                height: 200px;
+                overflow: hidden;
+                margin-bottom: 10px;
                 img{
                     width: 100%;
                     display: block;

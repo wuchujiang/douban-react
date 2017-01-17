@@ -13,10 +13,11 @@ export default class MovieList extends Component {
 
 
     componentDidMount() {
-        if (_.isEmpty(this.props.getMovingList)) {
-            Toast.loading('加载中...', 0, () => { });
+        this.getCurrentAddress().then(city => {
+            if (_.isEmpty(this.props.getMovingList)) {
+                console.log(city);
             request
-                .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=%E6%B7%B1%E5%9C%B3')
+                .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=' + city)
                 .timeout(15000)
                 .then(
                 res => {
@@ -24,10 +25,35 @@ export default class MovieList extends Component {
                     this.props.actions.getMovingList(JSON.parse(res.text));
                 },
                 err => {
-                    Toast.hide();
                     Toast.offline('网络连接失败!!!');
                 })
-        }
+            }
+        }).catch(err => {
+            Toast.offline('网络连接失败!!!');
+        })
+       
+    }
+
+    getCurrentAddress() {
+        return new Promise((resolve, reject) => {
+            let _this = this;
+            Toast.loading('加载中...', 0, () => { });
+            request.get("https://api.map.baidu.com/location/ip?ak=UfAAwhLHcsbPaYDyIhqetZ5Cu95p3WjE&coor=bd09ll")
+            .then(
+            res => {
+                let data = JSON.parse(res.text);
+                _this.props.actions.getCurrentPosition({
+                    city: data.content.address_detail.city,
+                    lat: data.content.point.x,
+                    ing: data.content.point.y
+                })
+                resolve(data.content.address_detail.city);
+             },
+            err => {
+                    reject("0");
+                }
+            )
+        })
     }
 
     getRating(item) {

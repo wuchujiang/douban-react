@@ -93,6 +93,11 @@ a {
     border: 2px solid #ddd;
     margin-right: 20px;
     position: relative;
+    .img-wrap{
+        width: 200px;
+        height: 290px;
+        overflow: hidden;
+    }
     img {
         width: 200px;
         display: block;
