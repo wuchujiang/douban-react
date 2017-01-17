@@ -5,7 +5,9 @@ import {
     LIST_GETMOVING_INFO,
     LIST_SETSHOWMOREBUTTON_STATE,
     LIST_SETACTORITEM,
-    LIST_CHECKACTORINFO
+    LIST_CHECKACTORINFO,
+    LIST_HASREADMOVE,
+    LIST_SCORECOUNTER
 } from 'client/state/types';
 
 export function counter(num) {
@@ -49,6 +51,30 @@ export function checkActorInfo(param = {}) {
         return dispatch({
             type: LIST_CHECKACTORINFO,
             items: param
+        })
+    }
+}
+
+export function hasReadMove(param) {
+    return (dispatch, getState) => {
+        return dispatch({
+            type: LIST_HASREADMOVE,
+            items: param
+        })
+    }
+}
+
+export function scoreCounter(param = {}) {
+    return (dispatch, getState) => {
+        let oldParam = getState().list.scoreCounter;
+        let newParam = _.assign(oldParam, param);
+        return dispatch({
+            type: LIST_SCORECOUNTER,
+            items: {
+                show: newParam.show,
+                score: newParam.score,
+                describe: newParam.describe
+            }
         })
     }
 }

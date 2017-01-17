@@ -13,24 +13,25 @@ export default class MovieList extends Component {
 
 
     componentDidMount() {
-        this.getCurrentAddress().then(city => {
-            if (_.isEmpty(this.props.getMovingList)) {
+        if (_.isEmpty(this.props.getMovingList)) {
+            this.getCurrentAddress().then(city => {
                 console.log(city);
-            request
-                .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=' + city)
-                .timeout(15000)
-                .then(
-                res => {
-                    Toast.hide();
-                    this.props.actions.getMovingList(JSON.parse(res.text));
-                },
-                err => {
-                    Toast.offline('网络连接失败!!!');
-                })
-            }
-        }).catch(err => {
-            Toast.offline('网络连接失败!!!');
-        })
+                request
+                    .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=' + city)
+                    .timeout(15000)
+                    .then(
+                    res => {
+                        Toast.hide();
+                        this.props.actions.getMovingList(JSON.parse(res.text));
+                    },
+                    err => {
+                        Toast.offline('网络连接失败!!!');
+                    })
+            
+            }).catch(err => {
+                Toast.offline('网络连接失败!!!');
+            })
+         }
        
     }
 

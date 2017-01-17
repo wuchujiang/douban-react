@@ -48,7 +48,7 @@ a {
             font-size: 20px;
         }
     }
-    .wishNumber{
+    .wishNumber {
         padding: 18px 0;
         color: yellow;
         font-size: 32px;
@@ -93,7 +93,7 @@ a {
     border: 2px solid #ddd;
     margin-right: 20px;
     position: relative;
-    .img-wrap{
+    .img-wrap {
         width: 200px;
         height: 290px;
         overflow: hidden;
@@ -136,12 +136,23 @@ a {
 }
 
 .movie-content-footer button {
-    height: 70px;
-    line-height: 70px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 60px;
+    line-height: 60px;
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
     width: 48%;
     border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 28px;
+    i {
+        color: #ddd;
+        margin-right: 10px;
+    }
+    &.active {
+        i {
+            color: #ff3300;
+        }
+    }
 }
 
 .movie-content-footer button:first-child {
@@ -152,7 +163,7 @@ a {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-.movie-player{
+.movie-player {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -160,14 +171,14 @@ a {
     -webkit-transform: translate(-50%, -50%);
     width: 70px;
     height: 70px;
-    border:3px solid #fff;
+    border: 3px solid #fff;
     border-radius: 50%;
     font-size: 40px;
     color: #fff;
     text-align: center;
     line-height: 70px;
-    background-color: rgba(0,0,0,0.5);
-    i{
+    background-color: rgba(0, 0, 0, 0.5);
+    i {
         padding-left: 5px;
     }
 }

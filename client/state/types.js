@@ -18,3 +18,9 @@ export const LIST_SETACTORITEM = 'LIST_SETACTORITEM';
 
 //储存选中的演员信息
 export const LIST_CHECKACTORINFO = 'LIST_CHECKACTORINFO';
+
+//存储用户是否看过按钮状态
+export const LIST_HASREADMOVE = 'LIST_HASREADMOVE';
+
+//评分状态
+export const LIST_SCORECOUNTER = 'LIST_SCORECOUNTER' //

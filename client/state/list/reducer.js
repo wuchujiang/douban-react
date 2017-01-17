@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import {
     LIST_STATE,
     LIST_GETMOVING_INFO,
     LIST_SETSHOWMOREBUTTON_STATE,
     LIST_SETACTORITEM,
-    LIST_CHECKACTORINFO
+    LIST_CHECKACTORINFO,
+    LIST_HASREADMOVE,
+    LIST_SCORECOUNTER
 } from 'client/state/types';
 
 export function counter(state = 1, action = {}) {
@@ -21,7 +23,7 @@ export function getMovingInfo(state = {}, action = {}) {
         case LIST_GETMOVING_INFO:
             return action.items;
         default:
-            return state;    
+            return state;
     }
 }
 
@@ -30,7 +32,7 @@ export function setShowMoreButtonState(state = false, action = {}) {
         case LIST_SETSHOWMOREBUTTON_STATE:
             return action.items;
         default:
-            return state;    
+            return state;
     }
 }
 
@@ -39,7 +41,7 @@ export function setActorItem(state = {}, action = {}) {
         case LIST_SETACTORITEM:
             return action.items;
         default:
-            return state;    
+            return state;
     }
 }
 
@@ -48,7 +50,25 @@ export function checkActorInfo(state = {}, action = {}) {
         case LIST_CHECKACTORINFO:
             return action.items;
         default:
-            return state;    
+            return state;
+    }
+}
+
+export function hasReadMove(state = 1, action = {}) {
+    switch (action.type) {
+        case LIST_HASREADMOVE:
+            return action.items;
+        default:
+            return state;
+    }
+}
+
+export function scoreCounter(state = { show: false, score: "", describe: "" }, action = {}) {
+    switch (action.type) {
+        case LIST_SCORECOUNTER:
+            return action.items;
+        default:
+            return state;
     }
 }
 
@@ -57,6 +77,7 @@ export default combineReducers({
     getMovingInfo: getMovingInfo,
     setShowMoreButtonState: setShowMoreButtonState,
     setActorItem: setActorItem,
-    checkActorInfo: checkActorInfo
+    checkActorInfo: checkActorInfo,
+    hasReadMove: hasReadMove,
+    scoreCounter: scoreCounter
 })
-

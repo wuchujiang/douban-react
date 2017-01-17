@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, NavBar, TabBar, Icon, Flex } from 'antd-mobile';
+import { Button, Icon, Toast, Modal } from 'antd-mobile';
 import _ from 'lodash';
 import ActorList from './actorList';
 import ActorInfo from './actorInfo';
@@ -11,7 +11,6 @@ export default class MainBody extends Component {
     }
 
     componentDidMount() {
-        
     }
 
     switchShow() {
@@ -44,9 +43,33 @@ export default class MainBody extends Component {
             )
         }
     }
+
+    checkReadState() {
+        let hasReadMove = this.props.hasReadMove;
+        let alert = Modal.alert;
+        if(hasReadMove == 1){
+            this.props.actions.hasReadMove(2);
+            Toast.info('已标记想看', 1.5);
+        }else if(hasReadMove == 2){
+            this.props.actions.hasReadMove(1);
+            Toast.info('已取消想看', 1.5);
+        }else if(hasReadMove == 3){
+            alert('是否取消看过', '若取消看过，您的评分也将被删除', [
+                    { text: '取消',style: 'default' },
+                    { text: '确定', onPress: () => {
+                        this.props.actions.hasReadMove(1);
+                    }, style: { fontWeight: 'bold' } },
+                ]
+            )
+        }
+    }
+
+    jumpToScroe() {
+        this.props.actions.scoreCounter({show: !this.props.scoreCounter.show});
+    }
        
     getMovieContent() {
-        let { getMovingInfo, setShowMoreButtonState } = this.props;
+        let { getMovingInfo, setShowMoreButtonState, hasReadMove} = this.props;
         let movieDetail = getMovingInfo.data.movie;
         return (
             <div>
@@ -77,10 +100,8 @@ export default class MainBody extends Component {
                             </div>
                         </div>
                         <div className="movie-content-footer">
-                            <Flex>
-                                <Button><Icon type="heart"/>想看</Button>
-                                <Button><Icon type="star"/>评分</Button>
-                            </Flex>
+                            <button onClick={e => {this.checkReadState();}} className={hasReadMove != 1 ? "active" : "love"}><Icon type="heart" />{hasReadMove == 1 ? "想看" : hasReadMove == 2 ? "已想看" : "看过"}</button>
+                            <button onClick={e => {this.jumpToScroe();}}><Icon type="star" />评分</button>
                         </div>
                     </div>
                 </div>

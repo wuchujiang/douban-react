@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {Button, NavBar, TabBar , Icon, Toast} from 'antd-mobile';
 import { Link } from 'react-router';
 import MainBody from './mainBody';
+import Score from './score';
 import * as listActions from 'client/state/list/actions';
 
 import request from 'superagent';
@@ -28,6 +29,10 @@ class List extends Component {
         }
     }
 
+    closeScorePage() {
+        this.props.actions.scoreCounter({show: !this.props.scoreCounter.show});
+    }
+
     componentWillUnmount() {
         this.props.actions.getMovingInfo();
         this.props.actions.setShowMoreButtonState(false);
@@ -36,16 +41,31 @@ class List extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <NavBar
-                    mode="dark"
-                    iconName="false"
-                    leftContent={<Link to="/">< Icon key = "0" type = "left" /></Link>}
-                    rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>{this.props.title}</NavBar>
-               <MainBody {...this.props} />
-            </div>
-        )
+        let {scoreCounter, title} = this.props;
+        if(!scoreCounter.show){
+            return (
+                <div>
+                    <NavBar
+                        mode="dark"
+                        iconName="false"
+                        leftContent={<Link to="/">< Icon key = "0" type = "left" /></Link>}
+                        rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>{title}</NavBar>
+                    <MainBody {...this.props} />
+                </div>
+            )
+        }else{
+             return(
+                <div>
+                    <NavBar
+                        mode="dark"
+                        iconName="false"
+                        onLeftClick = {e => {this.closeScorePage();}}
+                        leftContent={< Icon key = "0" type = "left" />}
+                        rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>评分</NavBar>
+                    <Score {...this.props} />
+                </div>
+            )
+        }
     }
 }
 
@@ -56,7 +76,9 @@ export default connect(
             getMovingInfo: state.list.getMovingInfo,
             setShowMoreButtonState: state.list.setShowMoreButtonState,
             setActorItem: state.list.setActorItem,
-            checkActorInfo: state.list.checkActorInfo
+            checkActorInfo: state.list.checkActorInfo,
+            hasReadMove: state.list.hasReadMove,
+            scoreCounter: state.list.scoreCounter
         };
     },
     (dispatch) => {
