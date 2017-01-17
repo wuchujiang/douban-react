@@ -12,3 +12,9 @@ export const LIST_SETSHOWMOREBUTTON_STATE = 'LIST_SETSHOWMOREBUTTON_STATE';
 
 //存储地理位置信息
 export const getCurrentPosition = 'APP_GETCURRENTPOSITION';
+
+//存储演员列表
+export const LIST_SETACTORITEM = 'LIST_SETACTORITEM';
+
+//储存选中的演员信息
+export const LIST_CHECKACTORINFO = 'LIST_CHECKACTORINFO';

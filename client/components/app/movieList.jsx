@@ -16,7 +16,7 @@ export default class MovieList extends Component {
         if (_.isEmpty(this.props.getMovingList)) {
             Toast.loading('加载中...', 0, () => { });
             request
-                .get('http://m.maoyan.com/movie/list.json?type=hot&offset=0&limit=1000')
+                .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=%E6%B7%B1%E5%9C%B3')
                 .timeout(15000)
                 .then(
                 res => {
@@ -61,7 +61,7 @@ export default class MovieList extends Component {
     }
 
     getAjaxListMove() {
-        let getMovingList = this.props.getMovingList.data.movies;
+        let getMovingList = this.props.getMovingList.data.hot;
         return (getMovingList.map((v, k) => {
             return (
                 <Link

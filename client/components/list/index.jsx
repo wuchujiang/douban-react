@@ -15,7 +15,7 @@ class List extends Component {
         let listId = this.props.listId;
         if (_.isEmpty(getMovingInfo)) {
             Toast.loading('加载中...', 0, () => { });
-            request.get('http://m.maoyan.com/movie/' + listId + '.json')
+            request.get('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30')
                 .end((err, res) => {
                     this.props.actions.getMovingInfo(JSON.parse(res.text));
                     Toast.hide();
@@ -47,7 +47,9 @@ export default connect(
         return {
             counter: state.list.counter,
             getMovingInfo: state.list.getMovingInfo,
-            setShowMoreButtonState: state.list.setShowMoreButtonState
+            setShowMoreButtonState: state.list.setShowMoreButtonState,
+            setActorItem: state.list.setActorItem,
+            checkActorInfo: state.list.checkActorInfo
         };
     },
     (dispatch) => {

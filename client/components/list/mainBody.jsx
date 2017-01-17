@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Button, NavBar, TabBar, Icon, Flex } from 'antd-mobile';
 import _ from 'lodash';
+import ActorList from './actorList';
+import ActorInfo from './actorInfo';
 export default class MainBody extends Component {
     constructor(props) {
         super(props);
@@ -43,16 +45,16 @@ export default class MainBody extends Component {
        
     getMovieContent() {
         let { getMovingInfo, setShowMoreButtonState } = this.props;
-        let movieDetail = getMovingInfo.data.MovieDetailModel;
+        let movieDetail = getMovingInfo.data.movie;
         return (
             <div>
                 <div className="movie-box">
-                    <div className="movie-background"  style={{"backgroundImage": "url(" + movieDetail.img + ")"}} ></div>
+                    <div className="movie-background"  style={{"backgroundImage": "url(" + movieDetail.img.replace("/w.h","") + ")"}} ></div>
                     <div className="movie-filter"></div>    
                     <div className="movie-content">
                         <div className="movie-content-body">
                             <div className="movie-pic">
-                                <img src={movieDetail.img} alt="" />
+                                <img src={movieDetail.img.replace("/w.h","")} alt="" />
                                 <div className="movie-player">
                                     <div className="movie-player-button">
                                 <Icon type="caret-right" />
@@ -61,6 +63,7 @@ export default class MainBody extends Component {
                             </div>
                             <div className="movie-info">
                                 <h3>{movieDetail.nm}</h3>
+                                <p className="secondTitle">{movieDetail.enm}</p>
                                 {this.getRating(movieDetail)}
                                 <ul>
                                     <li>{movieDetail.cat}</li>
@@ -90,11 +93,12 @@ export default class MainBody extends Component {
     }
 
     render() {
-        let { getMovingInfo } = this.props;
-        console.log(getMovingInfo)
+        let { getMovingInfo, checkActorInfo} = this.props;
         return (
             <div>
                 {!_.isEmpty(getMovingInfo) ? this.getMovieContent() : ""}
+                <ActorList {...this.props} />
+                {!_.isEmpty(checkActorInfo) ? <ActorInfo {...this.props} /> : ""}
             </div>
         )
     }

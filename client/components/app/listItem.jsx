@@ -18,7 +18,7 @@ export default class ListItem extends Component {
         return (
             <div className="movie-list">
                 <div className="movie-img">
-                    <img src={this.props.imgSrc} alt=""/>
+                    <img src={this.props.imgSrc.replace("/w.h", "")} alt=""/>
                 </div>
                 <div className="movie-info">
                     <div className="movie-title">

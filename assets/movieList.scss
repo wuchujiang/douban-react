@@ -17,6 +17,12 @@
 
 .movie-info {
     width: 100%;
+    .secondTitle{
+        font-size: 22px;
+        color: #fff;
+        line-height: 22px;
+        height: 22px;   
+    }
     .movie-title {
         h2 {
             color: #333;
@@ -69,6 +75,107 @@
             &.unSale {
                 background: #52b0eb;
             }
+        }
+    }
+}
+
+.actor-list{
+    margin-top: 24px;
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    background: #fff;
+    h4{
+        padding: 10px 0 20px;
+    }
+    ul{
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        li{
+            width: 150px;
+            text-align: center;
+            display: inline-block;
+            font-size: 24px;
+            .actor-img{
+                width: 150px;
+                padding-bottom: 10px;
+                img{
+                    width: 100%;
+                    display: block;
+                }
+            }
+            p{
+                width: 150px;
+                height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .actor-role{
+                color: #999;
+            }
+        }
+    }
+     ul li:not(:last-child){
+         margin-right: 16px;
+     }
+}
+
+.actorInfo{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    .actorInfo-mask{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.7);
+        z-index: 1002;
+    }
+    .actorInfo-detail{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        display: flex;
+        z-index: 1003;
+        background: #fff;
+        width: 80%;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: space-between;
+        -webkit-justify-content: space-between;
+        padding: 24px;
+        h3{
+            color: #333;
+        }
+        p{
+            font-size: 28px;
+        }
+        .second-name{
+            padding: 6px 0 12px;
+            color: #666;
+        }
+        .actor-name{
+            padding-top: 6px;
+            color: #999;
+        }
+    }
+    .actorInfo-img{
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
         }
     }
 }
