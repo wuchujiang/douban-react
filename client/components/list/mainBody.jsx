@@ -69,7 +69,7 @@ export default class MainBody extends Component {
     }
        
     getMovieContent() {
-        let { getMovingInfo, setShowMoreButtonState, hasReadMove} = this.props;
+        let { getMovingInfo, setShowMoreButtonState, hasReadMove, scoreCounter} = this.props;
         let movieDetail = getMovingInfo.data.movie;
         return (
             <div>
@@ -101,7 +101,7 @@ export default class MainBody extends Component {
                         </div>
                         <div className="movie-content-footer">
                             <button onClick={e => {this.checkReadState();}} className={hasReadMove != 1 ? "active" : "love"}><Icon type="heart" />{hasReadMove == 1 ? "想看" : hasReadMove == 2 ? "已想看" : "看过"}</button>
-                            <button onClick={e => {this.jumpToScroe();}}><Icon type="star" />评分</button>
+                            <button onClick={e => { this.jumpToScroe(); } } className={scoreCounter.score > 0 ? 'do' : 'did'}><Icon type="star" />{scoreCounter.score > 0 ? scoreCounter.score + '分，' + scoreCounter.describe : '评分'  }</button>
                         </div>
                     </div>
                 </div>

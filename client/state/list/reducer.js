@@ -63,7 +63,7 @@ export function hasReadMove(state = 1, action = {}) {
     }
 }
 
-export function scoreCounter(state = { show: false, score: "", describe: "" }, action = {}) {
+export function scoreCounter(state = { show: false, score: 0, describe: "请滑动星星评分" }, action = {}) {
     switch (action.type) {
         case LIST_SCORECOUNTER:
             return action.items;
