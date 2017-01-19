@@ -7,7 +7,8 @@ import {
     LIST_SETACTORITEM,
     LIST_CHECKACTORINFO,
     LIST_HASREADMOVE,
-    LIST_SCORECOUNTER
+    LIST_SCORECOUNTER,
+    LIST_MOVEPHOTOS
 } from 'client/state/types';
 
 export function counter(num) {
@@ -75,6 +76,15 @@ export function scoreCounter(param = {}) {
                 score: newParam.score,
                 describe: newParam.describe
             }
+        })
+    }
+}
+
+export function moviePhoto(param) {
+    return (dispatch, getState) => {
+        return dispatch({
+            type: LIST_MOVEPHOTOS,
+            items: param
         })
     }
 }

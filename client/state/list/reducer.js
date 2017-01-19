@@ -6,7 +6,8 @@ import {
     LIST_SETACTORITEM,
     LIST_CHECKACTORINFO,
     LIST_HASREADMOVE,
-    LIST_SCORECOUNTER
+    LIST_SCORECOUNTER,
+    LIST_MOVEPHOTOS
 } from 'client/state/types';
 
 export function counter(state = 1, action = {}) {
@@ -72,6 +73,15 @@ export function scoreCounter(state = { show: false, score: 0, describe: "请滑�
     }
 }
 
+export function moviePhoto(state = {}, action = {}) {
+    switch (action.type) {
+        case LIST_MOVEPHOTOS:
+            return action.items;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     counter: counter,
     getMovingInfo: getMovingInfo,
@@ -79,5 +89,7 @@ export default combineReducers({
     setActorItem: setActorItem,
     checkActorInfo: checkActorInfo,
     hasReadMove: hasReadMove,
-    scoreCounter: scoreCounter
+    scoreCounter: scoreCounter,
+    moviePhoto: moviePhoto
 })
+

@@ -3,6 +3,7 @@ import { Button, Icon, Toast, Modal } from 'antd-mobile';
 import _ from 'lodash';
 import ActorList from './actorList';
 import ActorInfo from './actorInfo';
+import MovePhoto from './movePhoto';
 
 import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay } from 'react-html5video';
 export default class MainBody extends Component {
@@ -118,12 +119,13 @@ export default class MainBody extends Component {
     }
 
     render() {
-        let { getMovingInfo, checkActorInfo} = this.props;
+        let { getMovingInfo, checkActorInfo, movePhoto} = this.props;
         return (
             <div>
                 {!_.isEmpty(getMovingInfo) ? this.getMovieContent() : ""}
                 <ActorList {...this.props} />
                 {!_.isEmpty(checkActorInfo) ? <ActorInfo {...this.props} /> : ""}
+                <MovePhoto {...this.props} />
                 <Video controls autoPlay loop muted
                 poster="http://p1.meituan.net/movie/f5cab6f0ff5c71f43fbef9a33a28835828406.jpg"
                 onCanPlayThrough={() => {

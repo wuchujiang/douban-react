@@ -218,3 +218,35 @@
         background-color: rgba(16,142,233,0.7);
     }
 }
+
+.photo{
+    padding: 20px;
+    margin-top: 24px;
+    background: #fff;
+    h4{
+        padding: 10px 0 20px;
+        span{
+            float: right;
+            font-size: .8em;
+            color: #666;
+            i{
+                padding-left: 8px;
+                font-size: .8em;
+            }
+        }
+    }
+    ul{
+        overflow-x: scroll;
+        white-space: nowrap;
+        li{
+            height: 140px;
+            display: inline-block;
+            img{
+                height: 140px;
+            }
+        }
+        li:not(:last-child){
+            margin-right: 10px;
+        }
+    }
+}

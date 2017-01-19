@@ -24,3 +24,6 @@ export const LIST_HASREADMOVE = 'LIST_HASREADMOVE';
 
 //评分状态
 export const LIST_SCORECOUNTER = 'LIST_SCORECOUNTER' //
+
+//获取电影剧照
+export const LIST_MOVEPHOTOS = 'LIST_MOVEPHOTOS';
