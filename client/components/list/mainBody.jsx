@@ -3,6 +3,7 @@ import { Button, Icon, Toast, Modal } from 'antd-mobile';
 import _ from 'lodash';
 import ActorList from './actorList';
 import ActorInfo from './actorInfo';
+import MovePhoto from './movePhoto';
 
 import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay } from 'react-html5video';
 export default class MainBody extends Component {
@@ -69,7 +70,7 @@ export default class MainBody extends Component {
     }
        
     getMovieContent() {
-        let { getMovingInfo, setShowMoreButtonState, hasReadMove} = this.props;
+        let { getMovingInfo, setShowMoreButtonState, hasReadMove, scoreCounter} = this.props;
         let movieDetail = getMovingInfo.data.movie;
         return (
             <div>
@@ -101,7 +102,7 @@ export default class MainBody extends Component {
                         </div>
                         <div className="movie-content-footer">
                             <button onClick={e => {this.checkReadState();}} className={hasReadMove != 1 ? "active" : "love"}><Icon type="heart" />{hasReadMove == 1 ? "想看" : hasReadMove == 2 ? "已想看" : "看过"}</button>
-                            <button onClick={e => {this.jumpToScroe();}}><Icon type="star" />评分</button>
+                            <button onClick={e => { this.jumpToScroe(); } } className={scoreCounter.score > 0 ? 'do' : 'did'}><Icon type="star" />{scoreCounter.score > 0 ? scoreCounter.score + '分，' + scoreCounter.describe : '评分'  }</button>
                         </div>
                     </div>
                 </div>
@@ -118,12 +119,13 @@ export default class MainBody extends Component {
     }
 
     render() {
-        let { getMovingInfo, checkActorInfo} = this.props;
+        let { getMovingInfo, checkActorInfo, movePhoto} = this.props;
         return (
             <div>
                 {!_.isEmpty(getMovingInfo) ? this.getMovieContent() : ""}
                 <ActorList {...this.props} />
                 {!_.isEmpty(checkActorInfo) ? <ActorInfo {...this.props} /> : ""}
+                <MovePhoto {...this.props} />
                 <Video controls autoPlay loop muted
                 poster="http://p1.meituan.net/movie/f5cab6f0ff5c71f43fbef9a33a28835828406.jpg"
                 onCanPlayThrough={() => {

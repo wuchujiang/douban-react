@@ -181,3 +181,72 @@
         }
     }
 }
+
+.score{
+    padding: 20px;
+    .score-num{
+        font-size: 60px;
+        color: #ffb400;
+        text-align: center;
+        span{
+            font-size: 0.6em;
+        }
+    }
+    .score-describe{
+        color: #ffb400;
+        padding: 20px 0;
+        text-align: center;
+    }
+    .score-icon{
+        margin-bottom: 40px;
+        i{
+            padding:0 18px;
+            font-size: 60px;
+        }
+        .star{
+            color: #ddd;
+        }
+        .star-o{
+            color: #ffb400;
+        }
+       text-align: center;
+    }
+    button{
+        margin-top: 30px;
+    }
+    .disabled{
+        background-color: rgba(16,142,233,0.7);
+    }
+}
+
+.photo{
+    padding: 20px;
+    margin-top: 24px;
+    background: #fff;
+    h4{
+        padding: 10px 0 20px;
+        span{
+            float: right;
+            font-size: .8em;
+            color: #666;
+            i{
+                padding-left: 8px;
+                font-size: .8em;
+            }
+        }
+    }
+    ul{
+        overflow-x: scroll;
+        white-space: nowrap;
+        li{
+            height: 140px;
+            display: inline-block;
+            img{
+                height: 140px;
+            }
+        }
+        li:not(:last-child){
+            margin-right: 10px;
+        }
+    }
+}

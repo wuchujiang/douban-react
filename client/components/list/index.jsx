@@ -78,7 +78,8 @@ export default connect(
             setActorItem: state.list.setActorItem,
             checkActorInfo: state.list.checkActorInfo,
             hasReadMove: state.list.hasReadMove,
-            scoreCounter: state.list.scoreCounter
+            scoreCounter: state.list.scoreCounter,
+            moviePhoto: state.list.moviePhoto
         };
     },
     (dispatch) => {
