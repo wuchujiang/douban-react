@@ -4,8 +4,8 @@ import _ from 'lodash';
 import ActorList from './actorList';
 import ActorInfo from './actorInfo';
 import MovePhoto from './movePhoto';
+import {Link} from 'react-router';
 
-import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay } from 'react-html5video';
 export default class MainBody extends Component {
     constructor(props) {
         super(props);
@@ -79,16 +79,26 @@ export default class MainBody extends Component {
                     <div className="movie-filter"></div>    
                     <div className="movie-content">
                         <div className="movie-content-body">
-                            <div className="movie-pic">
-                                <div className="img-wrap">
-                                    <img src={movieDetail.img.replace("/w.h", "")} alt="" />
+                            <Link to={{
+                                    pathname: "video/" + movieDetail.id,
+                                    query: {
+                                        videoName: movieDetail.videoName,
+                                        videourl: movieDetail.videourl,
+                                        videoImg: movieDetail.videoImg,
+                                        id: movieDetail.id
+                                    }
+                                }}>
+                                <div className="movie-pic">
+                                    <div className="img-wrap">
+                                        <img src={movieDetail.img.replace("/w.h", "")} alt="" />
+                                    </div>
+                                    <div className="movie-player">
+                                        <div className="movie-player-button">
+                                            <Icon type="caret-right" />
+                                        </div>    
+                                    </div>
                                 </div>
-                                <div className="movie-player">
-                                    <div className="movie-player-button">
-                                <Icon type="caret-right" />
-                            </div>    
-                        </div>
-                            </div>
+                            </Link>
                             <div className="movie-info">
                                 <h3>{movieDetail.nm}</h3>
                                 <p className="secondTitle">{movieDetail.enm}</p>
@@ -126,13 +136,6 @@ export default class MainBody extends Component {
                 <ActorList {...this.props} />
                 {!_.isEmpty(checkActorInfo) ? <ActorInfo {...this.props} /> : ""}
                 <MovePhoto {...this.props} />
-                <Video controls autoPlay loop muted
-                poster="http://p1.meituan.net/movie/f5cab6f0ff5c71f43fbef9a33a28835828406.jpg"
-                onCanPlayThrough={() => {
-                    // Do stuff
-                }}>
-                    <source src="http://maoyan.meituan.net/movie/videos/854x480b5967b4fbb2242f8a62e24f367e29a9c.mp4" type="video/mp4" />
-                </Video>
             </div>
         )
     }

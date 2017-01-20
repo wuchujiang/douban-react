@@ -14,6 +14,7 @@ class List extends Component {
     componentDidMount() {
         let getMovingInfo = this.props.getMovingInfo;
         let listId = this.props.listId;
+        console.log('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30');
         if (_.isEmpty(getMovingInfo)) {
             Toast.loading('加载中...', 0, () => { });
             request.get('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30')
@@ -49,7 +50,8 @@ class List extends Component {
                         mode="dark"
                         iconName="false"
                         leftContent={<Link to="/">< Icon key = "0" type = "left" /></Link>}
-                        rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>{title}</NavBar>
+                        rightContent={[< Icon key="0" type="search" />, < Icon key="1" type="ellipsis" />]}>{title}</NavBar>
+                    <div className="nav-space"></div>
                     <MainBody {...this.props} />
                 </div>
             )
@@ -61,7 +63,8 @@ class List extends Component {
                         iconName="false"
                         onLeftClick = {e => {this.closeScorePage();}}
                         leftContent={< Icon key = "0" type = "left" />}
-                        rightContent={[< Icon key = "0" type = "search" /> , < Icon key = "1" type = "ellipsis" />]}>评分</NavBar>
+                        rightContent={[< Icon key="0" type="search" />, < Icon key="1" type="ellipsis" />]}>评分</NavBar>
+                     <div className="nav-space"></div>
                     <Score {...this.props} />
                 </div>
             )

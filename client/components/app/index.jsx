@@ -18,7 +18,8 @@ class App extends Component {
                 <NavBar
                     mode="dark"
                     iconName="false"
-                    rightContent={[ < Icon key = "0" type = "search" />, < Icon key = "1" type = "ellipsis" />]}>猫眼电影</NavBar>    
+                    rightContent={[< Icon key="0" type="search" />, < Icon key="1" type="ellipsis" />]}>猫眼电影</NavBar>
+                <div className="nav-space"></div>
                <MainBody {...this.props} />
             </div>
         )

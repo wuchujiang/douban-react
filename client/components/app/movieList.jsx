@@ -96,7 +96,8 @@ export default class MovieList extends Component {
                     to={{
                         pathname: "list/" + v.id,
                         query: {
-                            title: v.nm
+                            title: v.nm,
+                            id: v.id
                         }
                     }}>
                     <ListItem
@@ -116,7 +117,7 @@ export default class MovieList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="movie-list-wrap">
                 {!_.isEmpty(this.props.getMovingList) ? this.getAjaxListMove() : ""}
             </div>
         )

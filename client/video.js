@@ -11,7 +11,7 @@ export default class VideoPage extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-		        <VideoPage />
+		        <Video param={this.props.location.query} />
 		    </Provider>
 		)
 	}

@@ -1,0 +1,16 @@
+@import './reset.scss';
+
+.video-react-control-bar{
+    font-size: 20px;
+}
+#root .video-react-big-play-button-left{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    line-height: 70px;
+    font-size: 40px;
+}

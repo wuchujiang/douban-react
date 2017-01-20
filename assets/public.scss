@@ -5,6 +5,17 @@ a {
     }
 }
 
+.am-navbar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+}
+.nav-space{
+    height: 0.9rem;
+}
+
 .movie-box {
     position: relative;
     overflow: hidden;

@@ -17,7 +17,7 @@ var webpackConfig = {
             { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
             { test: /\.css$/, loader: "style!css!postcss" },
             { test: /\.scss$/, loader: "style!css!sass!postcss" },
-            { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192', exclude: /node_modules/ }
+             {test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192', exclude: /node_modules/ }
         ]
     },
     resolve: {

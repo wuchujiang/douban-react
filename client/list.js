@@ -9,10 +9,12 @@ import 'assets/public.scss';
 let store = createReduxStore(window.__state);
 
 export default class ListPage extends Component {
+	
 	render() {
+		console.log(this.props);
 		return (
 			<Provider store={store}>
-		        <List listId={this.props.params.name} title={this.props.location.query.title} />
+		        <List listId={this.props.location.query.id} title={this.props.location.query.title} />
 		    </Provider>
 		)
 	}
