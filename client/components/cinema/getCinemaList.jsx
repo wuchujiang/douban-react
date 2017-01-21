@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import {Toast, Icon} from 'antd-mobile';
 import publicTool from 'client/utils/publicTool';
@@ -51,13 +52,23 @@ export default class CityLocation extends Component {
         }
     }
 
+    showCinemaInfo(ref) {
+        if( ReactDOM.findDOMNode(this.refs[ref]).className == "address"){
+            ReactDOM.findDOMNode(this.refs[ref]).className = "address select";
+           
+        }else{
+             ReactDOM.findDOMNode(this.refs[ref]).className = "address";
+        }
+        
+    }
+
     getCinemaList() {
         let data = this.props.getCinemaList.data;
         let listArr = [];
         _.mapKeys(data,(v, k) => {
             listArr.push (
-                <div key={_.uniqueId()} className="address">
-                    <h3>{k}<span>({data[k].length}家)</span><Icon type="down" /></h3>
+                <div key={_.uniqueId()} className="address" ref={v}>
+                    <h3 onClick={e =>{this.showCinemaInfo(v)}}>{k}<span>({data[k].length}家)</span><Icon type="down" /></h3>
                     <ul>
                         {
                             v.map( _v => {
