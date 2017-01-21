@@ -2,24 +2,16 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { Toast } from 'antd-mobile';
 import _ from 'lodash';
+import publicTool from 'client/utils/publicTool';
 export default class ActorList extends Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        request.get('https://wx.maoyan.com/wxapi/mmdb/v7/movie/' + this.props.listId + '/celebrities.json')
-            .timeout(15000)    
-            .then(
-            res => {
-                Toast.hide();
-                this.props.actions.setActorItem(JSON.parse(res.text));
-            },
-            err => {
-                Toast.hide();
-                Toast.offline('网络连接失败!!!');
-            }     
-        )
+        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/v7/movie/' + this.props.listId + '/celebrities.json', (data) =>{
+            this.props.actions.setActorItem(data);
+        });
     }
 
     getActorList() {

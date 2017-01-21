@@ -1,4 +1,8 @@
 @import './public.scss';
+.movie-list-wrap {
+    margin-bottom: 0.9rem;
+}
+
 .movie-list {
     display: flex;
     display: -webkit-flex;
@@ -17,11 +21,11 @@
 
 .movie-info {
     width: 100%;
-    .secondTitle{
+    .secondTitle {
         font-size: 22px;
         color: #fff;
         line-height: 22px;
-        height: 22px;   
+        height: 22px;
     }
     .movie-title {
         h2 {
@@ -79,68 +83,68 @@
     }
 }
 
-.actor-list{
+.actor-list {
     margin-top: 24px;
     border-top: 1px solid #ddd;
     padding: 20px;
     background: #fff;
-    h4{
+    h4 {
         padding: 10px 0 20px;
     }
-    ul{
+    ul {
         width: 100%;
         overflow-x: scroll;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
-        li{
+        li {
             width: 150px;
             text-align: center;
             display: inline-block;
             font-size: 24px;
-            .actor-img{
+            .actor-img {
                 width: 150px;
                 height: 200px;
                 overflow: hidden;
                 margin-bottom: 10px;
-                img{
+                img {
                     width: 100%;
                     display: block;
                 }
             }
-            p{
+            p {
                 width: 150px;
                 height: 30px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
             }
-            .actor-role{
+            .actor-role {
                 color: #999;
             }
         }
     }
-     ul li:not(:last-child){
-         margin-right: 16px;
-     }
+    ul li:not(:last-child) {
+        margin-right: 16px;
+    }
 }
 
-.actorInfo{
+.actorInfo {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     z-index: 1000;
-    .actorInfo-mask{
+    .actorInfo-mask {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,.7);
+        background-color: rgba(0, 0, 0, .7);
         z-index: 1002;
     }
-    .actorInfo-detail{
+    .actorInfo-detail {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -155,97 +159,97 @@
         justify-content: space-between;
         -webkit-justify-content: space-between;
         padding: 24px;
-        h3{
+        h3 {
             color: #333;
         }
-        p{
+        p {
             font-size: 28px;
         }
-        .second-name{
+        .second-name {
             padding: 6px 0 12px;
             color: #666;
         }
-        .actor-name{
+        .actor-name {
             padding-top: 6px;
             color: #999;
         }
     }
-    .actorInfo-img{
+    .actorInfo-img {
         border-radius: 50%;
         width: 150px;
         height: 150px;
         overflow: hidden;
-        img{
+        img {
             width: 100%;
             height: 100%;
         }
     }
 }
 
-.score{
+.score {
     padding: 20px;
-    .score-num{
+    .score-num {
         font-size: 60px;
         color: #ffb400;
         text-align: center;
-        span{
+        span {
             font-size: 0.6em;
         }
     }
-    .score-describe{
+    .score-describe {
         color: #ffb400;
         padding: 20px 0;
         text-align: center;
     }
-    .score-icon{
+    .score-icon {
         margin-bottom: 40px;
-        i{
-            padding:0 18px;
+        i {
+            padding: 0 18px;
             font-size: 60px;
         }
-        .star{
+        .star {
             color: #ddd;
         }
-        .star-o{
+        .star-o {
             color: #ffb400;
         }
-       text-align: center;
+        text-align: center;
     }
-    button{
+    button {
         margin-top: 30px;
     }
-    .disabled{
-        background-color: rgba(16,142,233,0.7);
+    .disabled {
+        background-color: rgba(16, 142, 233, 0.7);
     }
 }
 
-.photo{
+.photo {
     padding: 20px;
     margin-top: 24px;
     background: #fff;
-    h4{
+    h4 {
         padding: 10px 0 20px;
-        span{
+        span {
             float: right;
             font-size: .8em;
             color: #666;
-            i{
+            i {
                 padding-left: 8px;
                 font-size: .8em;
             }
         }
     }
-    ul{
+    ul {
         overflow-x: scroll;
         white-space: nowrap;
-        li{
+        li {
             height: 140px;
             display: inline-block;
-            img{
+            img {
                 height: 140px;
             }
         }
-        li:not(:last-child){
+        li:not(:last-child) {
             margin-right: 10px;
         }
     }

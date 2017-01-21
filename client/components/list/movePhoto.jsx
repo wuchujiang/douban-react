@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import _ from 'lodash';
-import request from 'superagent';
+import publicTool from 'client/utils/publicTool';
 import { Icon } from 'antd-mobile';
 
 export default class MovePhoto extends Component {
@@ -10,15 +10,11 @@ export default class MovePhoto extends Component {
     }
 
     componentDidMount() {
-        request.get('https://wx.maoyan.com/wxapi/mmdb/movie/photos/' + this.props.listId + '/list.json')
-            .then(
-            res => {
-                this.props.actions.moviePhoto(JSON.parse(res.text));
-            },
-            err => {
-                Toast.offline('网络连接失败!!!');
-            }    
-        )
+
+        //获取电影剧照
+        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/photos/' + this.props.listId + '/list.json', (data) =>{
+            this.props.actions.moviePhoto(data);
+        });
     }
 
     getMoviePhotos() {

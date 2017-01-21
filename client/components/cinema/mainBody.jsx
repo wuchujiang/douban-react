@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import request from 'superagent';
+import CityLocation from './getCinemaList';
 
 export default class Mainbody extends Component {
     constructor(props) {
@@ -7,14 +7,7 @@ export default class Mainbody extends Component {
     }
 
     componentDidMount() {
-        request.get('http://m.maoyan.com/cinemas.json')
-            .then(res => {
-                console.log(JSON.parse(res.text));
-            },
-            err => {
-                console.log(err);
-            }    
-        )
+      
     }
 
     getCurrentPosition() {
@@ -24,7 +17,7 @@ export default class Mainbody extends Component {
     render() {
         return (
             <div>
-                1132323
+                <CityLocation {...this.props} />
             </div>
         )
     }

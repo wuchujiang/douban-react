@@ -6,27 +6,17 @@ import { Link } from 'react-router';
 import MainBody from './mainBody';
 import Score from './score';
 import * as listActions from 'client/state/list/actions';
-
-import request from 'superagent';
+import publicTool from 'client/utils/publicTool';
 import _ from 'lodash';
 
 class List extends Component {
     componentDidMount() {
         let getMovingInfo = this.props.getMovingInfo;
         let listId = this.props.listId;
-        console.log('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30');
         if (_.isEmpty(getMovingInfo)) {
-            Toast.loading('加载中...', 0, () => { });
-            request.get('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30')
-                .then(
-                res => {
-                    Toast.hide();
-                    this.props.actions.getMovingInfo(JSON.parse(res.text));
-                },
-                err => {
-                    Toast.offline('网络连接失败!!!');
-                }    
-            )
+            publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30', (data) => {
+                this.props.actions.getMovingInfo(data);
+            })
         }
     }
 

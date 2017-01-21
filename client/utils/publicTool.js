@@ -1,3 +1,6 @@
+import request from 'superagent';
+import { Toast } from 'antd-mobile';
+
 let publicTool = {
     getBuDuMapLocation(location1, location2) {
         function fD(a, b, c) {
@@ -35,6 +38,23 @@ let publicTool = {
 
         //计算2个坐标的距离
         getDistance(location1, location2);
+    },
+
+    getServiceData(url, success = () => {}, failed = () => {}) {
+
+
+        request.get(url)
+            .timeout(15000)
+            .then(
+                res => {
+                    let data = JSON.parse(res.text);
+                    success && success(data);
+                },
+                err => {
+                    Toast.hide()
+                    Toast.offline('网络连接失败!');
+                }
+            )
     }
 }
 

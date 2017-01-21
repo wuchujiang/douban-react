@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Button, Icon, Flex, Toast } from 'antd-mobile';
 import ListItem from './listItem';
-import request from 'superagent';
+import publicTool from 'client/utils/publicTool';
 import _ from 'lodash';
 
 import 'assets/movieList.scss';
@@ -16,20 +16,11 @@ export default class MovieList extends Component {
         if (_.isEmpty(this.props.getMovingList)) {
             this.getCurrentAddress().then(city => {
                 console.log(city);
-                request
-                    .get('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=' + city)
-                    .timeout(15000)
-                    .then(
-                    res => {
-                        Toast.hide();
-                        this.props.actions.getMovingList(JSON.parse(res.text));
-                    },
-                    err => {
-                        Toast.offline('网络连接失败!!!');
-                    })
-            
+                publicTool.getServiceData('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=', (data) =>{
+                    this.props.actions.getMovingList(data);
+                });
             }).catch(err => {
-                Toast.offline('网络连接失败!!!');
+                Toast.offline('网络连接失败!!');
             })
          }
        
@@ -38,22 +29,16 @@ export default class MovieList extends Component {
     getCurrentAddress() {
         return new Promise((resolve, reject) => {
             let _this = this;
-            Toast.loading('加载中...', 0, () => { });
-            request.get("https://api.map.baidu.com/location/ip?ak=UfAAwhLHcsbPaYDyIhqetZ5Cu95p3WjE&coor=bd09ll")
-            .then(
-            res => {
-                let data = JSON.parse(res.text);
+            publicTool.getServiceData("https://api.map.baidu.com/location/ip?ak=UfAAwhLHcsbPaYDyIhqetZ5Cu95p3WjE&coor=bd09ll", (data) =>{
                 _this.props.actions.getCurrentPosition({
                     city: data.content.address_detail.city,
                     lat: data.content.point.x,
                     ing: data.content.point.y
-                })
+                });
                 resolve(data.content.address_detail.city);
-             },
-            err => {
-                    reject("0");
-                }
-            )
+            }, (error) => {
+                reject("1");
+            });
         })
     }
 
