@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from 'lodash';
-import {Toast} from 'antd-mobile';
+import {Toast, Icon} from 'antd-mobile';
 import publicTool from 'client/utils/publicTool';
 
 export default class CityLocation extends Component {
@@ -51,10 +51,43 @@ export default class CityLocation extends Component {
         }
     }
 
+    getCinemaList() {
+        let data = this.props.getCinemaList.data;
+        let listArr = [];
+        _.mapKeys(data,(v, k) => {
+            listArr.push (
+                <div key={_.uniqueId()} className="address">
+                    <h3>{k}<span>({data[k].length}家)</span><Icon type="down" /></h3>
+                    <ul>
+                        {
+                            v.map( _v => {
+                                return (
+                                    <li  key={_.uniqueId()}>
+                                        <h4>{_v.nm}<span>{_v.sellPrice}<small>元起</small></span></h4>
+                                        <div className="li-flex">
+                                            <div className="address-info">{_v.addr}</div>
+                                            <div className="distance">未知</div>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        });
+        return listArr;
+    }
+
     render() {
+        let getCinemaList = this.props.getCinemaList;
+        console.log(getCinemaList);
         return (
-            <div className="position">
-                {this.props.currentPosition.describe}
+            <div className="cinema">
+                <div className="position">
+                    {this.props.currentPosition.describe}
+                </div>
+                {!_.isEmpty(getCinemaList) ? this.getCinemaList() : ""}
             </div>
         )
     }

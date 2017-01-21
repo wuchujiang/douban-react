@@ -5,7 +5,7 @@ import ReactDom from 'react-dom';
 
 import createReduxStore from 'client/state/cinema/';
 import Cinema from 'client/components/cinema/';
-import 'assets/public.scss';
+import 'assets/cinema.scss';
 let store = createReduxStore(window.__state);
 
 export default class CinemaPage extends Component {
