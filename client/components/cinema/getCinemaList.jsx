@@ -15,7 +15,7 @@ export default class CityLocation extends Component {
         let _this = this;
         //通过ip查询地理位置
        Toast.loading('加载中...', 0, () => {});
-       publicTool.getServiceData("http://m.maoyan.com/cinemas.json", data => {
+       publicTool.getServiceData("https://m.maoyan.com/cinemas.json", data => {
            Toast.hide();
            this.props.actions.getCinemaList(data);
        })
@@ -31,7 +31,7 @@ export default class CityLocation extends Component {
         let _this = this;
         if(!_.isEmpty(latitude) &&! _.isEmpty(longitude)){
             Toast.loading('加载中...', 0, () => {});
-            publicTool.getServiceData(`http://m.maoyan.com/addr/latlng/${latitude},${longitude}/end`, data => {
+            publicTool.getServiceData(`https://m.maoyan.com/addr/latlng/${latitude},${longitude}/end`, data => {
                 Toast.hide();
                 _this.props.actions.currentPosition({
                     city: data.data.city,

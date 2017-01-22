@@ -41,12 +41,11 @@ let publicTool = {
     },
 
     getServiceData(url, success = () => {}, failed = () => {}) {
-
-
         request.get(url)
             .timeout(15000)
             .then(
                 res => {
+                    Toast.hide()
                     let data = JSON.parse(res.text);
                     success && success(data);
                 },

@@ -15,7 +15,7 @@ export default class MovieList extends Component {
     componentDidMount() {
         if (_.isEmpty(this.props.getMovingList)) {
             this.getCurrentAddress().then(city => {
-                console.log(city);
+                Toast.loading("加载中...", 0, () => {});
                 publicTool.getServiceData('https://wx.maoyan.com/mmdb/movie/v2/list/hot.json?limit=12&offset=0&ct=', (data) =>{
                     this.props.actions.getMovingList(data);
                 });
@@ -29,6 +29,7 @@ export default class MovieList extends Component {
     getCurrentAddress() {
         return new Promise((resolve, reject) => {
             let _this = this;
+            Toast.loading("加载中...", 0, () => {});
             publicTool.getServiceData("https://api.map.baidu.com/location/ip?ak=UfAAwhLHcsbPaYDyIhqetZ5Cu95p3WjE&coor=bd09ll", (data) =>{
                 _this.props.actions.getCurrentPosition({
                     city: data.content.address_detail.city,
