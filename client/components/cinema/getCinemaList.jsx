@@ -15,7 +15,7 @@ export default class CityLocation extends Component {
         let _this = this;
         //通过ip查询地理位置
        Toast.loading('加载中...', 0, () => {});
-       publicTool.getServiceData("https://m.maoyan.com/cinemas.json", data => {
+       publicTool.getServiceData("https://m.maoyan.com/cinemas.json",null, data => {
            Toast.hide();
            this.props.actions.getCinemaList(data);
        })
@@ -26,22 +26,23 @@ export default class CityLocation extends Component {
     }
 
     showPosition(position) {
-        let latitude = position.latitude;
-        let longitude = position.longitude;
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        console.log(latitude);
         let _this = this;
-        if(!_.isEmpty(latitude) &&! _.isEmpty(longitude)){
-            Toast.loading('加载中...', 0, () => {});
-            publicTool.getServiceData(`https://m.maoyan.com/addr/latlng/${latitude},${longitude}/end`, data => {
+            Toast.loading('加载中...', 0, () => { });
+            let query = {
+                location: position.coords.latitude + "," + position.coords.longitude,
+                ak: "UfAAwhLHcsbPaYDyIhqetZ5Cu95p3WjE",
+                output: "json"
+            };
+            publicTool.getServiceData("http://api.map.baidu.com/geocoder/v2/", query, data => {
                 Toast.hide();
                 _this.props.actions.currentPosition({
-                    city: data.data.city,
-                    lat: data.data.lat,
-                    lng: data.data.lng,
-                    describe: data.data.detail
+                    describe: data.result.formatted_address
                 });
             })
         }
-    }
 
     showError(error) {
         if(error.code){

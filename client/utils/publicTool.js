@@ -1,4 +1,5 @@
 import request from 'superagent';
+import jsonp from 'superagent-jsonp';
 import { Toast } from 'antd-mobile';
 
 let publicTool = {
@@ -40,9 +41,11 @@ let publicTool = {
         getDistance(location1, location2);
     },
 
-    getServiceData(url, success = () => {}, failed = () => {}) {
-        request.get(url)
+    getServiceData(url, query = {}, success = () => {}, failed = () => {}, jsonpState = false) {
+        if (!jsonpState) {
+            request.get(url)
             .timeout(15000)
+            .query(query)
             .then(
                 res => {
                     Toast.hide()
@@ -54,6 +57,23 @@ let publicTool = {
                     Toast.offline('网络连接失败!');
                 }
             )
+        } else {
+            request.get(url)
+                .timeout(15000)
+                .query(query)
+                .use(jsonp)    
+                .then(
+                    res => {
+                        Toast.hide()
+                        let data = JSON.parse(res.text);
+                        success && success(data);
+                    },
+                    err => {
+                        Toast.hide()
+                        Toast.offline('网络连接失败!');
+                    }
+                ) 
+       }
     }
 }
 
