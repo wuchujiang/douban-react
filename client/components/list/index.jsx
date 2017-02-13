@@ -14,7 +14,7 @@ class List extends Component {
         let getMovingInfo = this.props.getMovingInfo;
         let listId = this.props.listId;
         if (_.isEmpty(getMovingInfo)) {
-            publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30', (data) => {
+            publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/v5/' + listId + '.json?ci=30', null,(data) => {
                 this.props.actions.getMovingInfo(data);
             })
         }
@@ -29,6 +29,11 @@ class List extends Component {
         this.props.actions.setShowMoreButtonState(false);
         this.props.actions.checkActorInfo();
         this.props.actions.setActorItem();
+        this.props.actions.scoreCounter({
+            describe: "请滑动星星评分",
+            score: 0
+        });
+        this.props.actions.hasReadMove(1);
     }
 
     render() {

@@ -42,39 +42,41 @@ let publicTool = {
         return getDistance(location1, location2);
     },
 
-    getServiceData(url, query = {}, success = () => {}, failed = () => {}, jsonpState = false) {
-        if (!jsonpState) {
-            request.get(url)
-                .timeout(15000)
-                .query(query)
-                .then(
-                    res => {
-                        Toast.hide()
-                        let data = JSON.parse(res.text);
-                        success && success(data);
-                    },
-                    err => {
-                        Toast.hide()
-                        Toast.offline('网络连接失败!');
-                    }
-                )
-        } else {
-            request.get(url)
-                .timeout(15000)
-                .query(query)
-                .use(jsonp)
-                .then(
-                    res => {
-                        Toast.hide()
-                        let data = JSON.parse(res.text);
-                        success && success(data);
-                    },
-                    err => {
-                        Toast.hide()
-                        Toast.offline('网络连接失败!');
-                    }
-                )
-        }
+    getServiceData(url, query = {}, success = () => {}, failed = () => {}) {
+        request.get(url)
+            .timeout(15000)
+            .query(query)
+            .then(
+                res => {
+                    Toast.hide()
+                    let data = JSON.parse(res.text);
+                    success && success(data);
+                },
+                err => {
+                    Toast.hide()
+                    Toast.offline('网络连接失败!');
+                    failed && failed();
+                }
+            )
+    },
+
+    getServiceDataByJsonp(url, query = {}, success = () => {}, failed = () => {}) {
+        request.get(url)
+            .timeout(15000)
+            .query(query)
+            .use(jsonp)
+            .then(
+                res => {
+                    Toast.hide()
+                    let data = JSON.parse(res.text);
+                    success && success(data);
+                },
+                err => {
+                    Toast.hide()
+                    Toast.offline('网络连接失败!');
+                    failed && failed();
+                }
+            )
     }
 }
 

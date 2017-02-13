@@ -9,7 +9,7 @@ export default class ActorList extends Component {
     }
 
     componentDidMount() {
-        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/v7/movie/' + this.props.listId + '/celebrities.json', (data) =>{
+        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/v7/movie/' + this.props.listId + '/celebrities.json', null, (data) =>{
             this.props.actions.setActorItem(data);
         });
     }

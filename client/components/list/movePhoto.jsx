@@ -12,7 +12,7 @@ export default class MovePhoto extends Component {
     componentDidMount() {
 
         //获取电影剧照
-        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/photos/' + this.props.listId + '/list.json', (data) =>{
+        publicTool.getServiceData('https://wx.maoyan.com/wxapi/mmdb/movie/photos/' + this.props.listId + '/list.json', null,(data) =>{
             this.props.actions.moviePhoto(data);
         });
     }
