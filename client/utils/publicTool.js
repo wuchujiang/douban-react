@@ -24,6 +24,7 @@ let publicTool = {
 
         function Ce(a, b, c, d) {
             var dO = 6370996.81;
+            console.log(dO * Math.acos(Math.sin(c) * Math.sin(d) + Math.cos(c) * Math.cos(d) * Math.cos(b - a)));
             return dO * Math.acos(Math.sin(c) * Math.sin(d) + Math.cos(c) * Math.cos(d) * Math.cos(b - a));
         };
 
@@ -38,30 +39,14 @@ let publicTool = {
         };
 
         //计算2个坐标的距离
-        getDistance(location1, location2);
+        return getDistance(location1, location2);
     },
 
     getServiceData(url, query = {}, success = () => {}, failed = () => {}, jsonpState = false) {
         if (!jsonpState) {
             request.get(url)
-            .timeout(15000)
-            .query(query)
-            .then(
-                res => {
-                    Toast.hide()
-                    let data = JSON.parse(res.text);
-                    success && success(data);
-                },
-                err => {
-                    Toast.hide()
-                    Toast.offline('网络连接失败!');
-                }
-            )
-        } else {
-            request.get(url)
                 .timeout(15000)
                 .query(query)
-                .use(jsonp)    
                 .then(
                     res => {
                         Toast.hide()
@@ -72,8 +57,24 @@ let publicTool = {
                         Toast.hide()
                         Toast.offline('网络连接失败!');
                     }
-                ) 
-       }
+                )
+        } else {
+            request.get(url)
+                .timeout(15000)
+                .query(query)
+                .use(jsonp)
+                .then(
+                    res => {
+                        Toast.hide()
+                        let data = JSON.parse(res.text);
+                        success && success(data);
+                    },
+                    err => {
+                        Toast.hide()
+                        Toast.offline('网络连接失败!');
+                    }
+                )
+        }
     }
 }
 
